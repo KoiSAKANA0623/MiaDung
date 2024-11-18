@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgqlcul2ejad"]
+
+[ext_resource type="PackedScene" uid="uid://bw7w4qoc6kmtv" path="res://model/Dungeon_Mia/Dungeon_Mia.glb" id="1_0v3af"]
+
+[node name="Dungeon_Mia" instance=ExtResource("1_0v3af")]
+
+[node name="Skeleton3D" parent="Mia Skeleton" index="0"]
+bones/1/rotation = Quaternion(-0.472379, 1.05071e-07, -5.6312e-08, 0.881395)
+bones/2/rotation = Quaternion(0.999346, -4.31056e-09, 1.19132e-07, 0.0361599)
+bones/2/scale = Vector3(1, 1, 1.00001)
+bones/4/rotation = Quaternion(-0.00815091, -0.000131572, -0.0161439, 0.999836)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.496083, 0.504862, -0.487622, 0.511117)
+bones/5/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.00815091, 0.000131572, 0.0161439, 0.999836)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.496083, -0.504862, 0.487622, 0.511117)
+bones/8/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(-0.0126703, 0, 0, 0.99992)
+bones/11/rotation = Quaternion(0.00614775, 0, 0, 0.999981)
+bones/14/rotation = Quaternion(-0.00961877, -0.00396339, -0.00400375, 0.999938)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(0.00998627, -0.00250514, -0.000818626, 0.999947)
+bones/16/rotation = Quaternion(0.943588, 0.00233062, -0.00772546, -0.331023)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(-0.00961877, 0.00396339, 0.00400375, 0.999938)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(0.00998627, 0.00250514, 0.000818626, 0.999947)
+bones/19/rotation = Quaternion(0.943588, -0.00233062, 0.00772546, -0.331023)
+bones/19/scale = Vector3(1, 1, 1)

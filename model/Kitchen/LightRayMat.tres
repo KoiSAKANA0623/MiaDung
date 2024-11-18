@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cxldovm3bqo77"]
+
+[resource]
+blend_mode = 1
+shading_mode = 0
+specular_mode = 2
+vertex_color_use_as_albedo = true
+texture_filter = 0
+texture_repeat = false
+disable_receive_shadows = true

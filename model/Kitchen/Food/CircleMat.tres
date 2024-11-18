@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cwwupexshdlgn"]
+
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/basic_opaque_unshade.gdshader" id="1_baf0t"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_baf0t")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false

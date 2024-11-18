@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ersndk88xglr"]
+
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/sprite.gdshader" id="1_3wbau"]
+[ext_resource type="Texture2D" uid="uid://cxufcrjg8lxkx" path="res://model/Kitchen/Food/Tomato_TomatoSide.png" id="2_flxoa"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_3wbau")
+shader_parameter/albedo_color = Color(0.564706, 0.784314, 0, 1)
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/billboard_mode = 1
+shader_parameter/use_transform_scale = true
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+shader_parameter/albedo_texture = ExtResource("2_flxoa")

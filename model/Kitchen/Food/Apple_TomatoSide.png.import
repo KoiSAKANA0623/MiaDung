@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://un7jip4r0cso"
+path.s3tc="res://.godot/imported/Apple_TomatoSide.png-596ff40d921cd0de1132a39a73ab9b7c.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "420a3d6601f2833b3e4d588feb8fec75"
+}
+
+[deps]
+
+source_file="res://model/Kitchen/Food/Apple_TomatoSide.png"
+dest_files=["res://.godot/imported/Apple_TomatoSide.png-596ff40d921cd0de1132a39a73ab9b7c.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
