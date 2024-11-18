@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cgydjopxr15cs"]
+
+[ext_resource type="Shader" path="res://shaders/PSX.gdshader" id="1_o4if6"]
+
+[resource]
+shader = ExtResource("1_o4if6")
+shader_parameter/enabled = true
+shader_parameter/dithering = false
+shader_parameter/colors = 24
+shader_parameter/dither_size = 1
