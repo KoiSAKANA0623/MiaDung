@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bflf4rqj0dunk"]
+
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/standard_opaque.gdshader" id="1_dx6mc"]
+[ext_resource type="Texture2D" uid="uid://psks0fwlk4yn" path="res://model/Level_Dungeons/Test2/Test_Dung2_Dirt.png" id="2_saqnc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dx6mc")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+shader_parameter/albedo_texture = ExtResource("2_saqnc")

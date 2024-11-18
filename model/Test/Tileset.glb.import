@@ -1,0 +1,66 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://kuhddspe6v6v"
+path="res://.godot/imported/Tileset.glb-6ecfca7daf4e577268e0f9dae69f4707.scn"
+
+[deps]
+
+source_file="res://model/Test/Tileset.glb"
+dest_files=["res://.godot/imported/Tileset.glb-6ecfca7daf4e577268e0f9dae69f4707.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+meshes/ensure_tangents=false
+meshes/generate_lods=false
+meshes/create_shadow_meshes=false
+meshes/light_baking=0
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=false
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"Bricks": {
+"use_external/enabled": true,
+"use_external/path": "res://texture/BrickMat.tres"
+},
+"Cobble": {
+"use_external/enabled": true,
+"use_external/path": "res://texture/CobbleMat.tres"
+},
+"Dirt": {
+"use_external/enabled": true,
+"use_external/path": "res://texture/DirtMat.tres"
+},
+"Torch": {
+"use_external/enabled": true,
+"use_external/path": "res://texture/TorchStandMat.tres"
+}
+},
+"meshes": {
+"Tileset_Cube_001": {
+"generate/lightmap_uv": 2,
+"generate/lods": 2,
+"generate/shadow_meshes": 2,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/path": ""
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

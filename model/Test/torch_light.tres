@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bx0ht74ty3egv"]
+
+[ext_resource type="Texture2D" uid="uid://bagshp3v7fc5f" path="res://model/Test/Tileset_Torch.png" id="1_o6n1h"]
+
+[resource]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+specular_mode = 2
+albedo_color = Color(1, 0.823529, 0.105882, 1)
+albedo_texture = ExtResource("1_o6n1h")
+uv1_scale = Vector3(0.36, 0.36, 0.36)
+uv1_offset = Vector3(0.005, 0.385, 0)
+texture_filter = 0
+billboard_mode = 1
