@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c6q3myt6saao0"]
+
+[node name="ScreenFX" type="ColorRect"]
+visible = false
+offset_right = 320.0
+offset_bottom = 240.0

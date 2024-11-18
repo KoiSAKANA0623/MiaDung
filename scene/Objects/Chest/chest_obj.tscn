@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgm1hj4ahieh1"]
+
+[ext_resource type="Script" path="res://script/objects/chest/chest.gd" id="1_gj0t7"]
+[ext_resource type="PackedScene" uid="uid://d2djgtu4d54o3" path="res://model/Objects/Chest/Chest.glb" id="1_sy0cl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7porg"]
+size = Vector3(1.4, 1.2, 1.8)
+
+[node name="ChestObj" type="Node3D"]
+script = ExtResource("1_gj0t7")
+
+[node name="Chest" parent="." instance=ExtResource("1_sy0cl")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Chest"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0.6, 8.9407e-08)
+shape = SubResource("BoxShape3D_7porg")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 3
+volume_db = 5.0
+max_db = 5.0
+bus = &"Echo"

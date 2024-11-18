@@ -1,0 +1,103 @@
+[gd_scene load_steps=13 format=3 uid="uid://dkif0mhj1yrnk"]
+
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/sprite.gdshader" id="1_6upkd"]
+[ext_resource type="Script" path="res://script/items/sapphire.gd" id="1_85ia4"]
+[ext_resource type="Texture2D" uid="uid://cg6aamih3xe5t" path="res://sprites/Items/SapphireAnim.png" id="2_dqlx7"]
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/standard_transparent_unshade.gdshader" id="4_2f73u"]
+[ext_resource type="Texture2D" uid="uid://rck4lvxxkg5p" path="res://texture/Shadow.png" id="5_l22ec"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e72a1"]
+render_priority = 0
+shader = ExtResource("1_6upkd")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/alpha_scissor = 0.1
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(0.083, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/billboard_mode = 1
+shader_parameter/use_transform_scale = true
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+shader_parameter/albedo_texture = ExtResource("2_dqlx7")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1m78l"]
+material = SubResource("ShaderMaterial_e72a1")
+size = Vector2(0.75, 0.75)
+orientation = 2
+
+[sub_resource type="Animation" id="Animation_wr6ft"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:shader_parameter/uv_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8g2ik"]
+resource_name = "spin"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:shader_parameter/uv_offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.083, 0), Vector2(0.167, 0), Vector2(0.25, 0), Vector2(0.333, 0), Vector2(0.417, 0), Vector2(0.5, 0), Vector2(0.583, 0), Vector2(0.667, 0), Vector2(0.75, 0), Vector2(0.833, 0), Vector2(0.917, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_68dl4"]
+_data = {
+"RESET": SubResource("Animation_wr6ft"),
+"spin": SubResource("Animation_8g2ik")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x0tlf"]
+size = Vector2(0.6, 0.6)
+center_offset = Vector3(0, 0.01, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bo12x"]
+render_priority = 1
+shader = ExtResource("4_2f73u")
+shader_parameter/albedo_color = Color(1, 1, 1, 0.501961)
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 0.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+shader_parameter/albedo_texture = ExtResource("5_l22ec")
+
+[node name="Sapphire" type="Node3D"]
+script = ExtResource("1_85ia4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("PlaneMesh_1m78l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_68dl4")
+}
+
+[node name="Shadow" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_x0tlf")
+surface_material_override/0 = SubResource("ShaderMaterial_bo12x")
+
+[node name="FloorNormal" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+target_position = Vector3(0, -5, 0)

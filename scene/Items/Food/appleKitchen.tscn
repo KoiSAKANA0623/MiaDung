@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://bixxdlh5l0uax"]
+
+[ext_resource type="PackedScene" uid="uid://c6o7ua0nix4e0" path="res://model/Kitchen/Food/Apple.glb" id="1_8iwid"]
+[ext_resource type="Script" path="res://script/kitchen/food/apple.gd" id="1_dixcf"]
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/standard_transparent_unshade.gdshader" id="2_1dapb"]
+[ext_resource type="Texture2D" uid="uid://rck4lvxxkg5p" path="res://texture/Shadow.png" id="3_240yn"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tu1wu"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rr0i3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dfbo0"]
+states/Idle/node = SubResource("AnimationNodeAnimation_tu1wu")
+states/Idle/position = Vector2(442, 102)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_rr0i3")]
+
+[sub_resource type="Animation" id="Animation_mohx0"]
+resource_name = "Idle"
+length = 1.06667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Apple2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333, 0.8, 1.06667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.9, 1.1, 0.9), Vector3(1, 1, 1), Vector3(1.05, 0.95, 1.05), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7elp3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Apple2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_252tl"]
+_data = {
+"Idle": SubResource("Animation_mohx0"),
+"RESET": SubResource("Animation_7elp3")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1j56i"]
+size = Vector2(0.5, 0.5)
+center_offset = Vector3(0, 0.02, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ueqqj"]
+render_priority = 1
+shader = ExtResource("2_1dapb")
+shader_parameter/albedo_color = Color(1, 1, 1, 0.501961)
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+shader_parameter/albedo_texture = ExtResource("3_240yn")
+
+[node name="Apple" type="Node3D"]
+script = ExtResource("1_dixcf")
+
+[node name="Apple2" parent="." instance=ExtResource("1_8iwid")]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_dfbo0")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_252tl")
+}
+
+[node name="Shadow" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1j56i")
+surface_material_override/0 = SubResource("ShaderMaterial_ueqqj")

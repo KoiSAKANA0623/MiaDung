@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://yordeqjiy4pq"]
+
+[ext_resource type="PackedScene" uid="uid://bbsvsgdjwyq28" path="res://model/Kitchen/Food/Tomato.glb" id="1_hsbro"]
+[ext_resource type="Script" path="res://script/kitchen/food/tomato.gd" id="1_j7353"]
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/standard_transparent_unshade.gdshader" id="2_tm2ab"]
+[ext_resource type="Texture2D" uid="uid://rck4lvxxkg5p" path="res://texture/Shadow.png" id="3_e7alq"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tu1wu"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rr0i3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k4p83"]
+states/Idle/node = SubResource("AnimationNodeAnimation_tu1wu")
+states/Idle/position = Vector2(442, 102)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_rr0i3")]
+
+[sub_resource type="Animation" id="Animation_f3wwd"]
+resource_name = "Idle"
+length = 1.06667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tomato2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333, 0.8, 1.06667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.9, 1.1, 0.9), Vector3(1, 1, 1), Vector3(1.05, 0.95, 1.05), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nushh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tomato2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pmufy"]
+_data = {
+"Idle": SubResource("Animation_f3wwd"),
+"RESET": SubResource("Animation_nushh")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_anarx"]
+size = Vector2(0.5, 0.5)
+center_offset = Vector3(0, 0.02, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7arec"]
+render_priority = 1
+shader = ExtResource("2_tm2ab")
+shader_parameter/albedo_color = Color(1, 1, 1, 0.501961)
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+shader_parameter/albedo_texture = ExtResource("3_e7alq")
+
+[node name="Tomato" type="Node3D"]
+script = ExtResource("1_j7353")
+
+[node name="Tomato2" parent="." instance=ExtResource("1_hsbro")]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_k4p83")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pmufy")
+}
+
+[node name="Shadow" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_anarx")
+surface_material_override/0 = SubResource("ShaderMaterial_7arec")

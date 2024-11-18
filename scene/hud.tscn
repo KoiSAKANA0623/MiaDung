@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr23l37xwad15"]
+
+[ext_resource type="Script" path="res://script/hud.gd" id="1_7yj8h"]
+[ext_resource type="Shader" path="res://texture/invert.gdshader" id="1_xxtb4"]
+[ext_resource type="Texture2D" uid="uid://1obu7ro7me4j" path="res://texture/pointer.png" id="2_3yjsf"]
+[ext_resource type="Texture2D" uid="uid://dojco1rllsgq0" path="res://texture/Textbox/Test.png" id="4_v0xqc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5s1df"]
+shader = ExtResource("1_xxtb4")
+
+[node name="HUD" type="Node2D"]
+script = ExtResource("1_7yj8h")
+
+[node name="Pointer" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_5s1df")
+position = Vector2(160, 121)
+texture = ExtResource("2_3yjsf")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="DungeonMia" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(32, 152)
+texture = ExtResource("4_v0xqc")

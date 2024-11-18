@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://drm0p55hdacj3"]
+
+[node name="DungeonLighting" type="Node3D"]
+
+[node name="DL" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.500155, 0.00070709, 0.865935, -0.663462, 0.64294, 0.382683, -0.556474, -0.765917, 0.322038, 0, 0, 0)
+light_color = Color(1, 0.992157, 0.980392, 1)
+light_energy = 1.1
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 0
+directional_shadow_mode = 0
+directional_shadow_fade_start = 0.0
+sky_mode = 1
+
+[node name="DLNegative" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.500155, 0.00070712, -0.865935, 0.663462, 0.64294, -0.382683, 0.556474, -0.765917, -0.322038, 0, 0, 0)
+light_color = Color(0.909804, 0.909804, 1, 1)
+light_energy = 0.02
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_negative = true
+light_bake_mode = 0
+directional_shadow_mode = 0
+directional_shadow_fade_start = 0.0
+sky_mode = 1

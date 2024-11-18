@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfoi8rscbx3fn"]
+
+[ext_resource type="PackedScene" uid="uid://bk5ms82lc372s" path="res://model/Level_Dungeons/Test2/Test_Dung2.glb" id="1_h1kg8"]
+
+[node name="Test_Dung2" instance=ExtResource("1_h1kg8")]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwmt8tai7bs7h"]
+
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/sprite.gdshader" id="1_w2ld5"]
+[ext_resource type="Texture2D" uid="uid://d3htwxtp23esm" path="res://model/Test/TorchBall.png" id="2_pcelj"]
+[ext_resource type="Texture2D" uid="uid://rtn2isfg1bms" path="res://sprites/Effects/FlameBG.png" id="2_r2w2e"]
+[ext_resource type="PlaneMesh" uid="uid://bx0ht74ty3egv" path="res://model/Test/torch_light.tres" id="2_vtqq8"]
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/standard_transparent_unshade.gdshader" id="3_ds85w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfkls"]
+render_priority = 1
+shader = ExtResource("1_w2ld5")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/alpha_scissor = 0.1
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/billboard_mode = 1
+shader_parameter/use_transform_scale = false
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+shader_parameter/albedo_texture = ExtResource("2_pcelj")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_myrjc"]
+material = SubResource("ShaderMaterial_pfkls")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_skgky"]
+render_priority = 0
+shader = ExtResource("3_ds85w")
+shader_parameter/albedo_color = Color(0.8, 0.213333, 0, 0.188235)
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+shader_parameter/albedo_texture = ExtResource("2_r2w2e")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6bbgo"]
+material = SubResource("ShaderMaterial_skgky")
+size = Vector2(2.5, 2)
+orientation = 2
+
+[sub_resource type="Gradient" id="Gradient_hy30d"]
+offsets = PackedFloat32Array(0, 0.642857, 1)
+colors = PackedColorArray(1, 0.776471, 0.160784, 1, 0.815686, 0.215686, 0, 1, 0.0445778, 1.48528e-07, 7.97166e-08, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_si4wr"]
+gradient = SubResource("Gradient_hy30d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4aur0"]
+emission_shape_offset = Vector3(0, 0.05, 0)
+emission_shape_scale = Vector3(0.2, 0.2, 0.2)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 30.0
+flatness = 1.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.6
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -0.5
+linear_accel_max = -0.1
+attractor_interaction_enabled = false
+color_ramp = SubResource("GradientTexture1D_si4wr")
+anim_offset_max = 1.0
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 0.2
+
+[node name="TorchLight" type="Node3D"]
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 2.1, 0)
+mesh = SubResource("PlaneMesh_myrjc")
+
+[node name="GlowRect" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.1, 2.5, 0)
+mesh = SubResource("PlaneMesh_6bbgo")
+
+[node name="Fire" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 2.15, 0)
+interpolate = false
+fract_delta = false
+visibility_aabb = AABB(-1, -2, -1, 2, 4, 2)
+process_material = SubResource("ParticleProcessMaterial_4aur0")
+draw_pass_1 = ExtResource("2_vtqq8")

@@ -1,0 +1,46 @@
+[gd_scene load_steps=11 format=3 uid="uid://k3105dh2nsf6"]
+
+[ext_resource type="Environment" uid="uid://e5172fgoew0t" path="res://texture/environment.tres" id="1_r61c0"]
+[ext_resource type="PackedScene" uid="uid://d0tg7xbnbdnxe" path="res://scene/Player/playerDung.tscn" id="2_0g2ra"]
+[ext_resource type="PackedScene" uid="uid://bfoi8rscbx3fn" path="res://scene/Dungeons/test_dung_2.tscn" id="3_qwi8j"]
+[ext_resource type="PackedScene" uid="uid://dr23l37xwad15" path="res://scene/hud.tscn" id="4_stikg"]
+[ext_resource type="PackedScene" uid="uid://c6q3myt6saao0" path="res://scene/screen_fx.tscn" id="5_kpr8d"]
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/flat_sky.gdshader" id="6_ostct"]
+[ext_resource type="Texture2D" uid="uid://dgqmn1m3qbjh8" path="res://model/Level_Dungeons/Test2/Skybox.png" id="7_3v7t5"]
+[ext_resource type="PackedScene" uid="uid://blcbcsfdp4syj" path="res://scene/Items/sapphire_spawner_line.tscn" id="8_tylab"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e4kus"]
+render_priority = 0
+shader = ExtResource("6_ostct")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/albedo_texture = ExtResource("7_3v7t5")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dc6wi"]
+material = SubResource("ShaderMaterial_e4kus")
+flip_faces = true
+size = Vector3(300, 300, 300)
+
+[node name="TestDungeon" type="Node3D"]
+
+[node name="DungEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_r61c0")
+
+[node name="Player" parent="." instance=ExtResource("2_0g2ra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Test_Dung2" parent="." instance=ExtResource("3_qwi8j")]
+
+[node name="HUD" parent="." instance=ExtResource("4_stikg")]
+
+[node name="ScreenFX" parent="." instance=ExtResource("5_kpr8d")]
+
+[node name="SkyBox" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_dc6wi")
+
+[node name="Obj" type="Node3D" parent="."]
+
+[node name="SapphireSpawnerLine" parent="Obj" instance=ExtResource("8_tylab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -3)
+type = 1

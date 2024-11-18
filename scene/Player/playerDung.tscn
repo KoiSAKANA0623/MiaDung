@@ -1,0 +1,334 @@
+[gd_scene load_steps=46 format=3 uid="uid://d0tg7xbnbdnxe"]
+
+[ext_resource type="Script" path="res://script/player/playerDung.gd" id="1_1ax4o"]
+[ext_resource type="Environment" uid="uid://e5172fgoew0t" path="res://texture/environment.tres" id="2_kjsku"]
+[ext_resource type="PackedScene" uid="uid://drm0p55hdacj3" path="res://scene/dungeon_lighting.tscn" id="3_nncg2"]
+[ext_resource type="PackedScene" uid="uid://dgqlcul2ejad" path="res://model/Dungeon_Mia/dungeon_mia.tscn" id="4_6ahs5"]
+[ext_resource type="Material" uid="uid://iuwn1f573vta" path="res://model/Dungeon_Mia/Eyes_0.tres" id="5_kobbm"]
+[ext_resource type="Material" uid="uid://dys1huuxv2i15" path="res://model/Dungeon_Mia/Eyes_1.tres" id="6_txmux"]
+[ext_resource type="Shader" path="res://shaders/ursc/spatial/standard_transparent_unshade.gdshader" id="7_mnbx1"]
+[ext_resource type="Texture2D" uid="uid://rck4lvxxkg5p" path="res://texture/Shadow.png" id="8_vjyr0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bws3i"]
+radius = 0.28
+height = 1.5
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aiyii"]
+animation = &"Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_whhlg"]
+animation = &"Idle_0"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_x8u4b"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_00llp"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_jcpwk"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7ry7p"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_uffvx"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3oent"]
+animation = &"Land"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ynu6o"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_dpv6m"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_httrw"]
+filter_enabled = true
+filters = ["Mia Skeleton/Skeleton3D:Head", "Mia Skeleton/Skeleton3D:TopHalf"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6fdqk"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_pcgxb"]
+filter_enabled = true
+filters = ["Mia Skeleton/Skeleton3D:Tail_0", "Mia Skeleton/Skeleton3D:Tail_1", "Mia Skeleton/Skeleton3D:Tail_2", "Mia Skeleton/Skeleton3D:Tail_3"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ejoux"]
+animation = &"Tail_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7abx"]
+animation = &"Tail_0"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_4khpn"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vnmi1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f84ww"]
+animation = &"TiltLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eev5r"]
+animation = &"TiltRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_un0jf"]
+animation = &"TiltForward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_urtae"]
+animation = &"TiltBack"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qag4u"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_f84ww")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_eev5r")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_un0jf")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_urtae")
+blend_point_3/pos = Vector2(0, -1)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eiwwd"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0hjk4"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_acy8g"]
+animation = &"Jog"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3e76s"]
+animation = &"Jog"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gh8qt"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_10lfb"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_75f63"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_eiwwd")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_0hjk4")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_acy8g")
+blend_point_2/pos = -0.3
+blend_point_3/node = SubResource("AnimationNodeAnimation_3e76s")
+blend_point_3/pos = 0.3
+blend_point_4/node = SubResource("AnimationNodeAnimation_gh8qt")
+blend_point_4/pos = 0.4
+blend_point_5/node = SubResource("AnimationNodeAnimation_10lfb")
+blend_point_5/pos = -0.4
+sync = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xa2wu"]
+graph_offset = Vector2(-1713, -526)
+nodes/Fall/node = SubResource("AnimationNodeAnimation_aiyii")
+nodes/Fall/position = Vector2(-980, 40)
+nodes/Idle0/node = SubResource("AnimationNodeAnimation_whhlg")
+nodes/Idle0/position = Vector2(-1300, -440)
+nodes/Idle2Run/node = SubResource("AnimationNodeBlend2_x8u4b")
+nodes/Idle2Run/position = Vector2(-940, -360)
+nodes/IdleReset/node = SubResource("AnimationNodeTimeSeek_00llp")
+nodes/IdleReset/position = Vector2(-1120, -440)
+nodes/InAir/node = SubResource("AnimationNodeBlend2_jcpwk")
+nodes/InAir/position = Vector2(-460, -100)
+nodes/Jump/node = SubResource("AnimationNodeAnimation_7ry7p")
+nodes/Jump/position = Vector2(-1200, 240)
+nodes/JumpSpeed/node = SubResource("AnimationNodeTimeScale_uffvx")
+nodes/JumpSpeed/position = Vector2(-980, 200)
+nodes/Land/node = SubResource("AnimationNodeAnimation_3oent")
+nodes/Land/position = Vector2(-440, 160)
+nodes/OnJump/node = SubResource("AnimationNodeOneShot_ynu6o")
+nodes/OnJump/position = Vector2(-760, 100)
+nodes/OnLand/node = SubResource("AnimationNodeOneShot_dpv6m")
+nodes/OnLand/position = Vector2(-240, 20)
+nodes/PlayerTilt/node = SubResource("AnimationNodeAdd2_httrw")
+nodes/PlayerTilt/position = Vector2(-1180, -240)
+nodes/Run_Speed/node = SubResource("AnimationNodeTimeScale_6fdqk")
+nodes/Run_Speed/position = Vector2(-1400, -240)
+nodes/Tail_Add/node = SubResource("AnimationNodeAdd2_pcgxb")
+nodes/Tail_Add/position = Vector2(100, 160)
+nodes/Tail_Air/node = SubResource("AnimationNodeAnimation_ejoux")
+nodes/Tail_Air/position = Vector2(-380, 600)
+nodes/Tail_Idle/node = SubResource("AnimationNodeAnimation_l7abx")
+nodes/Tail_Idle/position = Vector2(-380, 440)
+nodes/Tail_Mode/node = SubResource("AnimationNodeBlend2_4khpn")
+nodes/Tail_Mode/position = Vector2(-200, 400)
+nodes/Tail_Speed/node = SubResource("AnimationNodeTimeScale_vnmi1")
+nodes/Tail_Speed/position = Vector2(-60, 280)
+nodes/Tilt/node = SubResource("AnimationNodeBlendSpace2D_qag4u")
+nodes/Tilt/position = Vector2(-1400, -60)
+nodes/Walk2Run/node = SubResource("AnimationNodeBlendSpace1D_75f63")
+nodes/Walk2Run/position = Vector2(-1660, -200)
+node_connections = [&"Idle2Run", 0, &"IdleReset", &"Idle2Run", 1, &"PlayerTilt", &"IdleReset", 0, &"Idle0", &"InAir", 0, &"Idle2Run", &"InAir", 1, &"OnJump", &"JumpSpeed", 0, &"Jump", &"OnJump", 0, &"Fall", &"OnJump", 1, &"JumpSpeed", &"OnLand", 0, &"InAir", &"OnLand", 1, &"Land", &"PlayerTilt", 0, &"Run_Speed", &"PlayerTilt", 1, &"Tilt", &"Run_Speed", 0, &"Walk2Run", &"Tail_Add", 0, &"OnLand", &"Tail_Add", 1, &"Tail_Speed", &"Tail_Mode", 0, &"Tail_Idle", &"Tail_Mode", 1, &"Tail_Air", &"Tail_Speed", 0, &"Tail_Mode", &"output", 0, &"Tail_Add"]
+
+[sub_resource type="Animation" id="Animation_jjcyj"]
+resource_name = "Idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dungeon_Mia/Mia Skeleton/Skeleton3D/Mia High-Model:surface_material_override/2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.76667, 1.83333, 1.93333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_kobbm"), ExtResource("6_txmux"), ExtResource("5_kobbm"), ExtResource("6_txmux"), ExtResource("5_kobbm")]
+}
+
+[sub_resource type="Animation" id="Animation_rdhlr"]
+resource_name = "Idle_Smile"
+
+[sub_resource type="Animation" id="Animation_myj7o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dungeon_Mia/Mia Skeleton/Skeleton3D/Mia High-Model:surface_material_override/2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfm1h"]
+_data = {
+"Idle": SubResource("Animation_jjcyj"),
+"Idle_Smile": SubResource("Animation_rdhlr"),
+"RESET": SubResource("Animation_myj7o")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f3tun"]
+size = Vector2(0.8, 0.8)
+center_offset = Vector3(0, 0.01, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ke31x"]
+render_priority = 0
+shader = ExtResource("7_mnbx1")
+shader_parameter/albedo_color = Color(1, 1, 1, 0.501961)
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/texture_lod_halve_distance_override = 0.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/convert_vertex_colors = false
+shader_parameter/albedo_texture = ExtResource("8_vjyr0")
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
+wall_min_slide_angle = 0.0349066
+floor_max_angle = 0.872665
+floor_snap_length = 0.5
+script = ExtResource("1_1ax4o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_bws3i")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+
+[node name="CamRot" type="Node3D" parent="Head"]
+
+[node name="Camera3D" type="Camera3D" parent="Head/CamRot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+environment = ExtResource("2_kjsku")
+current = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Head/CamRot"]
+spring_length = 3.0
+
+[node name="RayLook" type="RayCast3D" parent="Head/CamRot"]
+target_position = Vector3(0, 0, -5)
+
+[node name="DungeonLighting" parent="Head" instance=ExtResource("3_nncg2")]
+
+[node name="FloorNormal" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+target_position = Vector3(0, -8, 0)
+
+[node name="FloorCheck" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+target_position = Vector3(0, -0.2, 0)
+hit_back_faces = false
+
+[node name="FootStepSound" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+mix_target = 2
+max_polyphony = 2
+bus = &"Echo"
+
+[node name="Dungeon_Mia" parent="." instance=ExtResource("4_6ahs5")]
+transform = Transform3D(-0.4, 0, -6.03983e-08, 0, 0.4, 0, 6.03983e-08, 0, -0.4, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Dungeon_Mia/Mia Skeleton" index="0"]
+bones/0/position = Vector3(0, 1.73073, 0.0360013)
+bones/0/rotation = Quaternion(0.709572, 0.0590142, -0.0597925, 0.699607)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(-0.451973, -0.0386034, 0.0613065, 0.889085)
+bones/2/rotation = Quaternion(0.999346, 2.51115e-05, -7.87044e-07, 0.0361598)
+bones/3/rotation = Quaternion(0.803144, -0.192879, 0.55629, -0.0910994)
+bones/4/rotation = Quaternion(-0.00672948, -0.000343645, -0.326529, 0.945163)
+bones/5/rotation = Quaternion(0.426246, 0.564929, -0.551129, 0.442072)
+bones/6/rotation = Quaternion(-2.20085e-08, 3.09191e-08, 0.00826198, 0.999966)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-2.20085e-08, 3.09191e-08, 0.00826196, 0.999966)
+bones/7/scale = Vector3(0, 0, 0)
+bones/8/rotation = Quaternion(0.807679, 0.151233, -0.563816, -0.0830289)
+bones/9/rotation = Quaternion(-0.00748891, 0.00322041, 0.395039, 0.918628)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.443657, -0.539063, 0.609924, 0.37493)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-2.20085e-08, -3.09191e-08, -0.00826198, 0.999966)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(-2.20085e-08, -3.09191e-08, -0.00826196, 0.999966)
+bones/12/scale = Vector3(0, 0, 0)
+bones/13/position = Vector3(0, 1.72787, 0.0340714)
+bones/14/rotation = Quaternion(-0.301379, 0.00703865, 0.0486885, 0.952235)
+bones/15/rotation = Quaternion(-0.053637, 0.000753845, -0.122619, 0.991003)
+bones/16/rotation = Quaternion(0.123691, 1.15194e-09, -0.0491769, 0.991102)
+bones/17/rotation = Quaternion(0.123691, 9.9123e-10, -0.0491769, 0.991102)
+bones/18/rotation = Quaternion(-0.0543207, -0.0482376, 0.128347, 0.989065)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(0.145351, -0.00259293, -0.000471721, 0.989377)
+bones/20/rotation = Quaternion(0.966448, -0.0116104, -0.037815, -0.253798)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(-0.0543207, 0.0482376, -0.128347, 0.989065)
+bones/21/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(0.145351, 0.00259293, 0.000471721, 0.989377)
+bones/23/rotation = Quaternion(0.966448, 0.0116104, 0.037815, -0.253798)
+bones/23/scale = Vector3(1, 1, 1)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Dungeon_Mia")
+tree_root = SubResource("AnimationNodeBlendTree_xa2wu")
+anim_player = NodePath("../Dungeon_Mia/AnimationPlayer")
+parameters/Idle2Run/blend_amount = 0.0
+parameters/IdleReset/seek_request = -1.0
+parameters/InAir/blend_amount = 0.0
+parameters/JumpSpeed/scale = 1.3
+parameters/OnJump/active = false
+parameters/OnJump/internal_active = false
+parameters/OnJump/request = 0
+parameters/OnLand/active = false
+parameters/OnLand/internal_active = false
+parameters/OnLand/request = 0
+parameters/PlayerTilt/add_amount = 0.0
+parameters/Run_Speed/scale = 1.0
+parameters/Tail_Add/add_amount = 1.0
+parameters/Tail_Mode/blend_amount = 0.0
+parameters/Tail_Speed/scale = 1.0
+parameters/Tilt/blend_position = Vector2(0, 0)
+parameters/Walk2Run/blend_position = -0.649667
+
+[node name="MaterialAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yfm1h")
+}
+
+[node name="Shadow" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_f3tun")
+surface_material_override/0 = SubResource("ShaderMaterial_ke31x")
+
+[editable path="Dungeon_Mia"]
